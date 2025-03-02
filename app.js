@@ -1,8 +1,15 @@
 const express = require('express');
+const cors = require('cors');
 const { router } = require('./routes/router');
 const { dbConnection } = require('./config/dbConnect');
 const { User } = require('./model/userModel')
+
 const app = express();
+
+// app.use(cors()) // allow for all origin
+app.use(cors({
+    origin:"http://localhost:3000" // only for that origin
+}))
 
 app.use(express.json()) // for parse json req
 app.use('/', router)
